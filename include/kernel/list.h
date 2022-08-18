@@ -86,6 +86,6 @@
                                                                         \
         struct nodeType * next_##nodeType##_list(struct nodeType * node) { \
                 return node->next##nodeType;                            \
-        }                                                               \
+        }
 
 #endif
