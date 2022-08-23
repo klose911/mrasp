@@ -23,4 +23,8 @@ void mem_init(atag_t *atags);
 
 void *alloc_page(void);
 void free_page(void *ptr);
+
+void *kmalloc(uint32_t bytes);
+void kfree(void *ptr);
+
 #endif
