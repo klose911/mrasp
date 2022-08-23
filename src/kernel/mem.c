@@ -8,6 +8,7 @@
  * Heap Stuff
  */
 static void heap_init(uint32_t heap_start);
+
 /**
  * impliment kmalloc as a linked list of allocated segments.
  * Segments should be 4 byte aligned.
@@ -43,7 +44,7 @@ page_list_t free_pages;
  * Use best fit algorithm to find an allocation
  */
 void mem_init(atag_t *atags) {
-        uint32_t mem_size,  page_array_len, kernel_pages, i;
+        uint32_t mem_size,  page_array_len, kernel_pages, page_array_end, i;
 
         // Get the total number of pages
         mem_size = get_mem_size(atags);

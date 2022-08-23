@@ -5,6 +5,7 @@
 #define MEM_H
 
 #define PAGE_SIZE 4096
+#define KERNEL_HEAP_SIZE (1024*1024)
 
 typedef struct {
         uint8_t allocated: 1;			// This page is allocated to something
