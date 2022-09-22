@@ -3,6 +3,8 @@
 #include <kernel/mem.h>
 #include <kernel/mailbox.h>
 
+framebuffer_info_t fbinfo;
+
 int framebuffer_init(void) {
         property_message_tag_t tags[5];
 
