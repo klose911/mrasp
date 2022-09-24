@@ -18,6 +18,8 @@ typedef struct {
 
 fb_init_t fbinit __attribute__((aligned(16)));
 
+framebuffer_info_t fbinfo;
+
 int framebuffer_init(void) {
 	mail_message_t msg;
 

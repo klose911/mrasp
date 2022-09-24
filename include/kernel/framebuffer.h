@@ -17,8 +17,6 @@ typedef struct framebuffer_info {
     uint32_t chars_y;
 } framebuffer_info_t;
 
-framebuffer_info_t fbinfo;
-
 int framebuffer_init(void);
 
 #endif

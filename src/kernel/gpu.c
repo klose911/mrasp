@@ -6,7 +6,7 @@
 #include <common/stdlib.h>
 #include <common/stdio.h>
 
-
+extern framebuffer_info_t fbinfo;
 
 void write_pixel(uint32_t x, uint32_t y, const pixel_t * pix) {
         uint8_t * location = fbinfo.buf + y*fbinfo.pitch + x*BYTES_PER_PIXEL;
