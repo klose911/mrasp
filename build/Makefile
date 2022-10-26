@@ -1,9 +1,22 @@
-# Don't use normal gcc, use the arm cross compiler
+# uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
+
 TOOLCHAIN = arm-none-eabi
 CC = $(TOOLCHAIN)-gcc
 OBJCOPY = $(TOOLCHAIN)-objcopy
 GDB = $(TOOLCHAIN)-gdb
 
+ifeq ($(OS),Windows_NT)
+	CC = $(TOOLCHAIN)-gcc.exe
+	OBJCOPY = $(TOOLCHAIN)-objcopy.exe
+	GDB = $(TOOLCHAIN)-gdb.exe
+else
+	UNAME_S := $(shell uname -s)
+	ifneq ($(filter arm%,$(UNAME_P)),)
+		CC = gcc
+		OBJCOPY = objcopy
+		GDB = gdb
+	endif
+endif
 
 # Set any constants based on the raspberry pi model.  Version 1 has some differences to 2 and 3
 ifeq ($(RASPI_MODEL),1)
