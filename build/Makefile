@@ -68,7 +68,7 @@ clean:
 
 
 QEMU_SUPPORT_RASPI2B := $(shell sh -c 'qemu-system-arm --machine help | grep raspi2b ')
-ifeq ($(XYZ), )
+ifeq ($(strip $(QEMU_SUPPORT_RASPI2B)), )
 	QEMU_MACHINE := raspi2
 	QEMU_MEMORRY := 128
 else
