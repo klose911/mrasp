@@ -9,13 +9,6 @@ ifeq ($(OS),Windows_NT)
 	CC = $(TOOLCHAIN)-gcc.exe
 	OBJCOPY = $(TOOLCHAIN)-objcopy.exe
 	GDB = $(TOOLCHAIN)-gdb.exe
-else
-	UNAME_S := $(shell uname -s)
-	ifneq ($(filter arm%,$(UNAME_P)),)
-		CC = gcc
-		OBJCOPY = objcopy
-		GDB = gdb
-	endif
 endif
 
 # Set any constants based on the raspberry pi model.  Version 1 has some differences to 2 and 3
@@ -73,13 +66,24 @@ clean:
 	rm $(IMG_NAME).elf
 	rm $(IMG_NAME).img
 
+
+QEMU_SUPPORT_RASPI2B := $(shell sh -c 'qemu-system-arm --machine help | grep raspi2b ')
+ifeq ($(XYZ), )
+	QEMU_MACHINE := raspi2
+	QEMU_MEMORRY := 128
+else
+	QEMU_MACHINE := raspi2b
+	QEMU_MEMORRY := 1024
+endif 
+
 run: build
-	qemu-system-arm -m 128 -no-reboot -M raspi2 -serial stdio -kernel kernel.elf
+	qemu-system-arm -m $(QEMU_MEMORRY) -no-reboot -M $(QEMU_MACHINE) -serial stdio -kernel kernel.elf
 
 dbg:
 	$(GDB) kernel.elf
+
 dbgrun: build gdbinit
-	qemu-system-arm -m 128 -no-reboot -M raspi2 -serial stdio -kernel kernel.elf -S -s
+	qemu-system-arm -m $(QEMU_MEMORRY) -no-reboot -M $(QEMU_MACHINE) -serial stdio -kernel kernel.elf -S -s
 
 .PHONY: gdbinit
 gdbinit:
