@@ -5,11 +5,11 @@ CC = $(TOOLCHAIN)-gcc
 OBJCOPY = $(TOOLCHAIN)-objcopy
 GDB = $(TOOLCHAIN)-gdb
 
-ifeq ($(OS),Windows_NT)
-	CC = $(TOOLCHAIN)-gcc.exe
-	OBJCOPY = $(TOOLCHAIN)-objcopy.exe
-	GDB = $(TOOLCHAIN)-gdb.exe
-endif
+# ifeq ($(OS),Windows_NT)
+# 	CC = $(TOOLCHAIN)-gcc.exe
+# 	OBJCOPY = $(TOOLCHAIN)-objcopy.exe
+# 	GDB = $(TOOLCHAIN)-gdb.exe
+# endif
 
 # Set any constants based on the raspberry pi model.  Version 1 has some differences to 2 and 3
 ifeq ($(RASPI_MODEL),1)
